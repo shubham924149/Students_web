@@ -7,20 +7,18 @@ app = Flask(__name__)
 # ---------------------- CONFIG ----------------------
 app.secret_key = "change_this_secret_key"  # you can change this
 
-DB_HOST = "localhost"
-DB_USER = "root"
-DB_PASSWORD = "rehankhan786"
-DB_NAME = "myformdb"
+# SQLite fallback (fast test)
+import os
+import sqlite3
 
+BASE_DIR = os.path.dirname(__file__)
+SQLITE_PATH = os.path.join(BASE_DIR, "data.sqlite")
 
 def get_connection():
-    """Creates and returns a new MySQL database connection."""
-    return mysql.connector.connect(
-        host=DB_HOST,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        database=DB_NAME
-    )
+    conn = sqlite3.connect(SQLITE_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
 
 
 # ---------------------- LOGIN REQUIRED DECORATOR ----------------------
