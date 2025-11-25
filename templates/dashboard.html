@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | StudentMS{% endblock %}
+{% block content %}
+<div data-aos="fade-down">
+  <h2>Dashboard</h2>
+  <p>Welcome, {{ session.username }}!</p>
+
+  <div class="mt-4">
+    <a href="{{ url_for('students') }}" class="btn btn-primary me-2 btn-anim">Manage Students</a>
+    <a href="{{ url_for('add_student') }}" class="btn btn-success btn-anim">Add New Student</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Add Student | StudentMS{% endblock %}
+{% block content %}
+<div class="fade-in" data-aos="zoom-in">
+  <h2>Add New Student</h2>
+
+  {% if message %}
+    <div class="alert alert-info flash">{{ message }}</div>
+  {% endif %}
+
+  <form action="{{ url_for('add_student') }}" method="POST" class="mt-3" style="max-width:480px;">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Age</label>
+      <input type="number" name="age" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-anim">Add Student</button>
+    <a href="{{ url_for('students') }}" class="btn btn-secondary ms-2 btn-anim">Cancel</a>
+  </form>
+</div>
+{% endblock %}
